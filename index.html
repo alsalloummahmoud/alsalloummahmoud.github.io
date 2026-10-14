@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
  
@@ -1435,65 +1434,57 @@ section{
  
 .card .shot{
   position:relative;
- 
+
   aspect-ratio:16/8.5;
- 
+
   display:flex;
- 
   align-items:center;
   justify-content:center;
- 
+
   overflow:hidden;
- 
+
   border-bottom:1px solid rgba(255,255,255,.08);
- 
+
   background:
     radial-gradient(
       circle at 25% 25%,
-      rgba(0,255,255,.16),
-      transparent 35%
+      rgba(0,255,255,.14),
+      transparent 55%
     ),
     linear-gradient(
       135deg,
-      #172536,
-      #0a1018
+      #233550,
+      #131c29
     );
- 
-  color:rgba(255,255,255,.5);
- 
-  font-family:var(--mono);
- 
-  font-size:.72rem;
- 
-  letter-spacing:.05em;
- 
-  text-transform:uppercase;
 }
- 
-.card .shot::before{
-  content:"";
- 
-  position:absolute;
- 
-  width:220px;
-  height:220px;
- 
-  border:1px solid rgba(0,255,255,.13);
- 
-  border-radius:50%;
+
+.card .shot img{
+  /* Bilder kleiner darstellen, ohne sie abzuschneiden oder zu verzerren */
+  width:64%;
+  height:64%;
+  object-fit:contain;
+  display:block;
+
+  transition:transform .35s ease;
+}
+
+.card:hover .shot img{
+  transform:scale(1.03);
 }
  
 .card .shot::after{
   content:"";
- 
+
   position:absolute;
- 
-  width:120px;
-  height:120px;
- 
-  border:1px solid rgba(251,255,0,.08);
- 
-  border-radius:50%;
+  inset:0;
+
+  background:linear-gradient(
+    to top,
+    rgba(5,8,13,.30) 0%,
+    transparent 30%
+  );
+
+  pointer-events:none;
 }
  
 .card .body{
@@ -2830,6 +2821,101 @@ body.intro-finished{
   }
 }
 
+
+
+/* ============================================================
+   ACCESSIBILITY: CLEAR, READABLE TYPOGRAPHY
+   Carefully enlarges small text while preserving the layout.
+   ============================================================ */
+:root {
+  --type-body: 1.0625rem;
+  --type-small: 0.9375rem;
+  --type-meta: 0.875rem;
+}
+
+body {
+  font-size: var(--type-body);
+  line-height: 1.75;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Main headings remain prominent and scale smoothly with screen size. */
+h1 { line-height: 1.12; }
+h2 { font-size: clamp(1.85rem, 3.2vw, 2.5rem); line-height: 1.2; }
+h3 { line-height: 1.3; }
+.section-heading { margin-bottom: 40px; }
+.section-label { font-size: 0.82rem; line-height: 1.5; letter-spacing: 0.14em; }
+
+/* Navigation and introductory text */
+.navlinks a { font-size: 0.96rem; }
+.brand { font-size: 1rem; }
+.hero-eyebrow { font-size: 0.82rem; }
+.role-line { font-size: clamp(1.1rem, 2vw, 1.35rem); }
+.hero .lead { font-size: 1.125rem; line-height: 1.8; }
+.btn { font-size: 1rem; }
+.social a { font-size: 0.9rem; }
+.term { font-size: 0.94rem; }
+.term pre { line-height: 1.9; }
+
+/* General descriptive content */
+.about-copy p { font-size: 1.1rem; line-height: 1.85; }
+.about-note { font-size: 1.02rem; line-height: 1.8; }
+.section-heading p,
+.stack-intro,
+.contact-title p { font-size: 1.05rem; line-height: 1.8; }
+.stats dd { font-size: 0.98rem; line-height: 1.65; }
+
+/* Language and technology cards */
+.language-title h3 { font-size: 1.12rem; }
+.language-title span { font-size: 0.82rem; line-height: 1.5; }
+.language-level { font-size: 0.86rem; }
+.progress-info { font-size: 0.82rem; }
+.cefr-scale span { font-size: 0.75rem; }
+.tech-name { font-size: 0.9rem; line-height: 1.45; }
+.skill-group h3 { font-size: 1.05rem; }
+.chip { font-size: 0.9rem; }
+
+/* Project cards: descriptions, labels, tags and links are easier to read. */
+.card h3 { font-size: 1.3rem; line-height: 1.35; }
+.outcome { font-size: 0.86rem; line-height: 1.55; }
+.card-description { font-size: 1.04rem; line-height: 1.8; }
+.tag { font-size: 0.86rem; min-height: 30px; padding: 5px 10px; }
+.card-links a { font-size: 0.88rem; padding: 8px 11px; }
+
+/* Experience timeline */
+.timeline .role { font-size: 1.15rem; line-height: 1.45; }
+.timeline .subtitle { font-size: 1.08rem; line-height: 1.5; }
+.timeline .institution { font-size: 0.98rem; line-height: 1.65; }
+.timeline .institution span { font-size: 0.88rem; line-height: 1.6; }
+.timeline .when { font-size: 0.88rem; }
+.timeline p { font-size: 1.03rem; line-height: 1.8; }
+
+/* Contact form and footer */
+.email-link { font-size: 1.08rem; overflow-wrap: anywhere; }
+.form-group label { font-size: 0.95rem; }
+input, textarea { font-size: 1rem; line-height: 1.6; }
+.form-note { font-size: 0.9rem; line-height: 1.7; }
+footer { font-size: 0.86rem; line-height: 1.7; }
+
+/* Ensure the typography remains comfortable on phones. */
+@media (max-width: 600px) {
+  body { font-size: 1rem; line-height: 1.75; }
+  .navlinks a { font-size: 1rem; }
+  .hero .lead { font-size: 1.04rem; }
+  .section-heading p,
+  .stack-intro,
+  .contact-title p { font-size: 1rem; }
+  .card h3 { font-size: 1.22rem; }
+  .card-description { font-size: 1rem; }
+  .outcome { font-size: 0.82rem; }
+  .tag { font-size: 0.82rem; }
+  .card-links a { font-size: 0.84rem; }
+  .tech-name { font-size: 0.84rem; }
+  .timeline p { font-size: 0.98rem; }
+  .email-link { font-size: 1rem; }
+}
+
 </style>
 </head>
  
@@ -3867,31 +3953,29 @@ System ready <span class="a">✓</span></pre>
       <article class="card">
  
         <div class="shot">
-          Project 01 · Infrastructure
+          <img src="images/Cloud.png" alt="Self-Hosted Private Cloud">
         </div>
  
         <div class="body">
  
           <h3>
-            IT Infrastructure Project
+            Self-Hosted Private Cloud
           </h3>
  
           <p class="outcome">
-            Network & system infrastructure
+            Nextcloud on Ubuntu Server
           </p>
  
           <p class="card-description">
-            Infrastructure project focused on reliable system
-            administration, Linux environments, automation and
-            containerized services.
+            Built a self-hosted Nextcloud instance on Ubuntu Server. Fully accessible via local LAN and locked down behind a secure VPN for remote access.  
           </p>
  
  
           <div class="tags">
  
-            <span class="tag">Docker</span>
-            <span class="tag">Python</span>
-            <span class="tag">Linux</span>
+            <span class="tag">Linux Ubuntu</span>
+            <span class="tag">Nextcloud</span>
+            <span class="tag">Networking / VPN</span>
  
           </div>
  
@@ -3920,30 +4004,28 @@ System ready <span class="a">✓</span></pre>
       <article class="card">
  
         <div class="shot">
-          Project 02 · DevOps
+          <img src="images/IT-Monitoring.png" alt="Infrastrucutre Monitoring & Observability">
         </div>
  
         <div class="body">
  
           <h3>
-            DevOps & Automation
+            Infrastructure Monitoring & Observability
           </h3>
  
           <p class="outcome">
-            Automation & deployment
+            SRE & Performance
           </p>
  
           <p class="card-description">
-            A technical project focused on deployment workflows,
-            containerization, automation and reliable development
-            environments.
+            Implmented an end-to-end monitoring stack using Prometheus and Grafana to track system performance, catch metrics early, and eliminate donwtime in both home lab and production environments
           </p>
  
  
           <div class="tags">
  
-            <span class="tag">Docker</span>
-            <span class="tag">Python</span>
+            <span class="tag">Prometheus</span>
+            <span class="tag">Grafana</span>
             <span class="tag">Linux</span>
  
           </div>
@@ -3973,31 +4055,32 @@ System ready <span class="a">✓</span></pre>
       <article class="card">
  
         <div class="shot">
-          Project 03 · Monitoring
+          <img src="images/Website.png" alt="This Portfolio Website">
         </div>
  
         <div class="body">
  
           <h3>
-            Monitoring & Observability
+            This Portfolio Website
           </h3>
  
           <p class="outcome">
-            Infrastructure monitoring
+            Frontend & GitOps 
           </p>
  
           <p class="card-description">
-            Monitoring environment designed to collect system
-            metrics, visualize infrastructure health and provide
-            better visibility into IT systems.
+            You're looking at it! Built as a clean, 
+            responsive static site using HTML, CSS, and JavaScript. Powered by GitOps and automated CI/CD pipelines via GitHub Actions for seamless deployment. 
           </p>
  
  
           <div class="tags">
  
-            <span class="tag">Linux</span>
-            <span class="tag">Python</span>
-            <span class="tag">Docker</span>
+            <span class="tag">HTML / CSS</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">GitHub Actions</span>
+            <span class="tag">GitOps</span>
+            <span class="tag">Google Gemini</span>
  
           </div>
  
@@ -4026,22 +4109,23 @@ System ready <span class="a">✓</span></pre>
       <article class="card">
  
         <div class="shot">
-          Project 04 · Web Application
+          <img src="images/Ticketing-System.png" alt="Internal Helpdesk & Service Ticketing System">
         </div>
  
         <div class="body">
  
           <h3>
-            Web Application
+            Internal Helpdesk & Service Ticketing System
           </h3>
  
           <p class="outcome">
-            Full-stack development
+            Full-stack & Internal Tools
           </p>
  
           <p class="card-description">
-            Web application project combining backend services,
-            databases and a responsive frontend interface.
+            Lightweight internal ticketing portal built with Flask and SQL. 
+            Streamlines company service requests. with simple submission forms for employees and an interactive 
+            admin dashboard for real-time status management-fully containerized via Docker. 
           </p>
  
  
@@ -4050,6 +4134,8 @@ System ready <span class="a">✓</span></pre>
             <span class="tag">Python</span>
             <span class="tag">SQL</span>
             <span class="tag">Linux</span>
+            <span class="tag">Docker</span>
+            <span class="tag">HTML / CSS</span>
  
           </div>
  
@@ -4072,6 +4158,353 @@ System ready <span class="a">✓</span></pre>
  
       </article>
  
+
+
+
+
+ <!-- PROJECT 5 -->
+
+
+
+
+      <article class="card">
+ 
+        <div class="shot">
+          <img src="images/Firewall.png" alt="Network Segmentation & Firewall Isolation">
+        </div>
+ 
+        <div class="body">
+ 
+          <h3>
+            Network & IT Security 
+          </h3>
+ 
+ 
+          <p class="card-description">
+            Planned and implemented network separation between 
+            development and production environments using VLANs and Sophos UTM. Defined granular firewall rules and access control policies to isolate environments
+             while maintaining secure communication for essential internal services.
+          </p>
+ 
+ 
+          <div class="tags">
+ 
+            <span class="tag">Networking / VLAN</span>
+            <span class="tag">Sophos UTM / Firewall</span>
+            <span class="tag">HP Switches</span>
+            <span class="tag">IT Security</span>
+            
+ 
+          </div>
+ 
+ 
+          <div class="card-links">
+ 
+            <a
+              href="https://github.com/"
+              target="_blank"
+              rel="noopener noreferrer">
+ 
+              <i class="fa-brands fa-github"></i>
+              GitHub
+ 
+            </a>
+ 
+          </div>
+ 
+        </div>
+ 
+      </article>
+
+ <!-- PROJECT 6 -->
+
+
+
+
+
+
+      <article class="card">
+ 
+        <div class="shot">
+          <img src="images/Login-Security.png" alt="SSH Access Monitoring & Audit System">
+        </div>
+ 
+        <div class="body">
+ 
+          <h3>
+            SSH Access Monitoring & Audit System
+          </h3>
+ 
+          <p class="outcome">
+            Security & Log Automation
+          </p>
+ 
+          <p class="card-description">
+           Real-time security auditing tool for linux servers. A Python background service monitors 
+           auth log files to capture SSh login events, failed attempts. and connection details, storing all audit logs in MongoDB for threat tracking.
+          </p>
+ 
+ 
+          <div class="tags">
+ 
+            <span class="tag">Linux</span>
+            <span class="tag">Python</span>
+            <span class="tag">MongoDB</span>
+            <span class="tag">SSH Security</span>
+ 
+          </div>
+ 
+ 
+          <div class="card-links">
+ 
+            <a
+              href="https://github.com/"
+              target="_blank"
+              rel="noopener noreferrer">
+ 
+              <i class="fa-brands fa-github"></i>
+              GitHub
+ 
+            </a>
+ 
+          </div>
+ 
+        </div>
+ 
+      </article>
+
+
+
+
+
+
+ <!-- PROJECT 7 -->
+
+   <article class="card">
+ 
+        <div class="shot">
+          <img src="images/Load-Balancer.png" alt="High-Availability NGINX Load Balancer">
+        </div>
+ 
+        <div class="body">
+ 
+          <h3>
+            High-Availibility NGINX Load Balancer
+          </h3>
+ 
+          <p class="outcome">
+            Infrastructure & Scaling
+          </p>
+ 
+          <p class="card-description">
+            Deployed an NGINX load balancing cluster 
+            across multiple virtual machines on a hypervisor environment. Designed to distribute incoming traffic evenly, prevent single 
+            points of failure, and ensure high availability and optimal performance for backend services. 
+          </p>
+ 
+ 
+          <div class="tags">
+ 
+            <span class="tag">Linux</span>
+            <span class="tag">Virtualization</span>
+            <span class="tag">Load Balancing</span>
+            <span class="tag">Networking</span>
+ 
+          </div>
+ 
+ 
+          <div class="card-links">
+ 
+            <a
+              href="https://github.com/"
+              target="_blank"
+              rel="noopener noreferrer">
+ 
+              <i class="fa-brands fa-github"></i>
+              GitHub
+ 
+            </a>
+ 
+          </div>
+ 
+        </div>
+ 
+      </article>
+
+
+
+ <!-- PROJECT 8 -->
+
+   <article class="card">
+ 
+        <div class="shot">
+          <img src="images/Deployment.png" alt="Automated Configuration Management with Ansible">
+        </div>
+ 
+        <div class="body">
+ 
+          <h3>
+            Automated Configuration Management with Ansible
+          </h3>
+ 
+          <p class="outcome">
+            DevOps & Automation
+          </p>
+ 
+          <p class="card-description">
+            Set up an Ansible Control Node on Ubuntu Server to 
+            manage infrastructure as code. Custom playbooks automate software package installations, system updates, and 
+            configuration enforcement across remote target hosts over SSH
+          </p>
+ 
+ 
+          <div class="tags">
+ 
+            <span class="tag">Linux</span>
+            <span class="tag">Ansible</span>
+            <span class="tag">DevOps</span>
+            <span class="tag">YAML / SSH</span>
+ 
+          </div>
+ 
+ 
+          <div class="card-links">
+ 
+            <a
+              href="https://github.com/"
+              target="_blank"
+              rel="noopener noreferrer">
+ 
+              <i class="fa-brands fa-github"></i>
+              GitHub
+ 
+            </a>
+ 
+          </div>
+ 
+        </div>
+ 
+      </article>
+
+
+
+
+
+ <!-- PROJECT 9 -->
+
+   <article class="card">
+ 
+        <div class="shot">
+          <img src="images/Weather.png" alt="Cloud-Native Weather Microservice">
+        </div>
+ 
+        <div class="body">
+ 
+          <h3>
+            Kubernetes & CI/CD Pipeline
+          </h3>
+ 
+      
+ 
+          <p class="card-description">
+            End-to-End containerized microservice built with Python (Flask) and MariaDB to fetch weather API data and expose 
+            health status endpoints. Fully automated via GitHub Actions CI/CD and deployed to a local Kubernetes cluster using manifests.
+          </p>
+ 
+ 
+          <div class="tags">
+ 
+            <span class="tag">Linux</span>
+            <span class="tag">Python / Flask</span>
+            <span class="tag">MariaDB</span>
+            <span class="tag">Docker</span>
+            <span class="tag">Kubernetes</span>
+            <span class="tag">GitHub Actions</span>
+ 
+          </div>
+ 
+ 
+          <div class="card-links">
+ 
+            <a
+              href="https://github.com/"
+              target="_blank"
+              rel="noopener noreferrer">
+ 
+              <i class="fa-brands fa-github"></i>
+              GitHub
+ 
+            </a>
+ 
+          </div>
+ 
+        </div>
+ 
+      </article>
+
+ <!-- PROJECT 10 -->
+
+
+
+   <article class="card">
+ 
+        <div class="shot">
+          <img src="images/IaC-Provisioning.png" alt="On-Premise Infrastructure as Code">
+        </div>
+ 
+        <div class="body">
+ 
+          <h3>
+            On-Premise Infrastructure as Code
+          </h3>
+ 
+          <p class="outcome">
+           Terraform & Automated Provisioning 
+          </p>
+ 
+          <p class="card-description">
+            Automated VM provisioning on a bare-metal hypervisor using Terraform. Declarative configuration files define system resources, networking, and instances,
+            enabling quick and repeatable infrastructure deployment in an on-premise environment. 
+          </p>
+ 
+ 
+          <div class="tags">
+ 
+            <span class="tag">Linux</span>
+            <span class="tag">Terraform</span>
+            <span class="tag">Proxmox</span>
+            <span class="tag">IaC</span>
+ 
+          </div>
+ 
+ 
+          <div class="card-links">
+ 
+            <a
+              href="https://github.com/"
+              target="_blank"
+              rel="noopener noreferrer">
+ 
+              <i class="fa-brands fa-github"></i>
+              GitHub
+ 
+            </a>
+ 
+          </div>
+ 
+        </div>
+ 
+      </article>
+
+
+
+
+
+
+
+
+
+
     </div>
  
   </div>
@@ -4378,6 +4811,7 @@ System ready <span class="a">✓</span></pre>
  
     © 2026 Mahmoud Alsalloum
     · Built with HTML, CSS & JavaScript
+    . Icons by <a href="https://icons8.com" target="_blank">Icons8</a> & <a href="https://www.flaticon.com" target="_blank">Flaticon</a>
  
   </div>
  
