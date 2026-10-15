@@ -632,6 +632,100 @@ header.site{
 }
  
  
+
+
+
+
+
+
+/* زر اللغة */
+.btn-lang {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* النافذة المنبثقة Modal */
+.lang-modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+}
+
+.lang-modal-content {
+  background-color: #1e293b;
+  color: #fff;
+  margin: 15% auto;
+  padding: 24px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 360px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+.close-lang {
+  position: absolute;
+  right: 16px;
+  top: 12px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.lang-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.lang-options button {
+  background: #334155;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: left;
+  transition: background 0.2s;
+}
+
+.lang-options button:hover {
+  background: #475569;
+}
+
+/* إخفاء شريط Google العلوي المزعج */
+body {
+  top: 0 !important;
+}
+.goog-te-banner-frame {
+  display: none !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* ============================================================
    TERMINAL
    ============================================================ */
@@ -1955,6 +2049,118 @@ textarea::placeholder{
   font-size:.75rem;
 }
  
+
+
+
+
+
+
+
+/* ============================================================
+   BACK TO TOP
+   ============================================================ */
+
+.back-to-top{
+  position:fixed;
+  right:24px;
+  bottom:24px;
+  z-index:60;
+
+  width:52px;
+  height:52px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border:none;
+  border-radius:50%;
+
+  background:linear-gradient(145deg, #4fc9ff, #1f8fe0);
+  color:#060a10;
+
+  cursor:pointer;
+
+  box-shadow:
+    0 10px 28px rgba(0,0,0,.35),
+    0 0 0 1px rgba(255,255,255,.08) inset;
+
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(14px) scale(.92);
+
+  transition:
+    opacity .25s ease,
+    transform .25s ease,
+    visibility .25s ease,
+    box-shadow .2s ease,
+    background .2s ease;
+}
+
+.back-to-top svg{
+  width:20px;
+  height:20px;
+  stroke:#06121c;
+  stroke-width:3;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  fill:none;
+}
+
+.back-to-top.visible{
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0) scale(1);
+}
+
+.back-to-top:hover{
+  background:linear-gradient(145deg, #6ad4ff, #2a9df0);
+  box-shadow:
+    0 14px 34px rgba(0,0,0,.42),
+    0 0 0 1px rgba(255,255,255,.12) inset,
+    0 0 22px rgba(0,255,255,.18);
+  transform:translateY(-3px) scale(1.04);
+}
+
+.back-to-top:active{
+  transform:translateY(0) scale(.97);
+}
+
+.back-to-top:focus-visible{
+  outline:2px solid var(--cyan);
+  outline-offset:3px;
+}
+
+@media (max-width:600px){
+  .back-to-top{
+    right:16px;
+    bottom:16px;
+    width:46px;
+    height:46px;
+  }
+  .back-to-top svg{
+    width:18px;
+    height:18px;
+  }
+}
+
+@media (prefers-reduced-motion:reduce){
+  .back-to-top{
+    transition:opacity .01ms, visibility .01ms;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
  
 /* ============================================================
    FOOTER
@@ -1974,6 +2180,9 @@ footer{
   text-align:center;
 }
  
+
+
+
  
 /* ============================================================
    ANIMATIONS
@@ -3020,6 +3229,7 @@ footer { font-size: 0.86rem; line-height: 1.7; }
         </a>
       </li>
  
+
       <li>
         <a href="#experience">
           <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
@@ -3157,6 +3367,50 @@ System ready <span class="a">✓</span></pre>
 </section>
  
  
+
+
+
+
+<button id="langBtn" class="btn-lang" type="button">
+  🌐 English
+</button>
+
+
+<div id="langModal" class="lang-modal">
+  <div class="lang-modal-content">
+    <span id="closeLang" class="close-lang">&times;</span>
+    <h3>Select Language</h3>
+    
+    <div class="lang-options">
+      <button onclick="changeLanguage('en')">🇺🇸 English</button>
+      <button onclick="changeLanguage('de')">🇩🇪 Deutsch</button>
+      <button onclick="changeLanguage('ar')">🇸🇦 العربية</button>
+      <button onclick="changeLanguage('fr')">🇫🇷 Français</button>
+      <button onclick="changeLanguage('es')">🇪🇸 Español</button>
+    </div>
+  </div>
+</div>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  
 <!-- ============================================================
      ABOUT
@@ -3170,9 +3424,7 @@ System ready <span class="a">✓</span></pre>
  
       <div>
  
-        <span class="section-label">
-          PROFILE
-        </span>
+
  
         <h2>
           About me
@@ -3247,9 +3499,7 @@ System ready <span class="a">✓</span></pre>
  
       <div>
  
-        <span class="section-label">
-          LANGUAGE PROFICIENCY
-        </span>
+  
  
         <h2>
           Languages
@@ -3455,9 +3705,7 @@ System ready <span class="a">✓</span></pre>
  
       <div>
  
-        <span class="section-label">
-          TECHNOLOGY STACK
-        </span>
+
  
         <h2>
           Technology Stack
@@ -3932,9 +4180,7 @@ System ready <span class="a">✓</span></pre>
  
       <div>
  
-        <span class="section-label">
-          SELECTED WORK
-        </span>
+
  
         <h2>
           Featured projects
@@ -3958,13 +4204,10 @@ System ready <span class="a">✓</span></pre>
  
         <div class="body">
  
-          <h3>
+          <h3 class="outcome">
             Self-Hosted Private Cloud
           </h3>
  
-          <p class="outcome">
-            Nextcloud on Ubuntu Server
-          </p>
  
           <p class="card-description">
             Built a self-hosted Nextcloud instance on Ubuntu Server. Fully accessible via local LAN and locked down behind a secure VPN for remote access.  
@@ -4009,13 +4252,10 @@ System ready <span class="a">✓</span></pre>
  
         <div class="body">
  
-          <h3>
+          <h3 class="outcome">
             Infrastructure Monitoring & Observability
           </h3>
  
-          <p class="outcome">
-            SRE & Performance
-          </p>
  
           <p class="card-description">
             Implmented an end-to-end monitoring stack using Prometheus and Grafana to track system performance, catch metrics early, and eliminate donwtime in both home lab and production environments
@@ -4060,13 +4300,11 @@ System ready <span class="a">✓</span></pre>
  
         <div class="body">
  
-          <h3>
+          <h3 class="outcome">
             This Portfolio Website
           </h3>
  
-          <p class="outcome">
-            Frontend & GitOps 
-          </p>
+        
  
           <p class="card-description">
             You're looking at it! Built as a clean, 
@@ -4114,13 +4352,11 @@ System ready <span class="a">✓</span></pre>
  
         <div class="body">
  
-          <h3>
+          <h3 class="outcome">
             Internal Helpdesk & Service Ticketing System
           </h3>
  
-          <p class="outcome">
-            Full-stack & Internal Tools
-          </p>
+
  
           <p class="card-description">
             Lightweight internal ticketing portal built with Flask and SQL. 
@@ -4175,7 +4411,7 @@ System ready <span class="a">✓</span></pre>
  
         <div class="body">
  
-          <h3>
+          <h3 class="outcome">
             Network & IT Security 
           </h3>
  
@@ -4219,10 +4455,6 @@ System ready <span class="a">✓</span></pre>
  <!-- PROJECT 6 -->
 
 
-
-
-
-
       <article class="card">
  
         <div class="shot">
@@ -4231,13 +4463,11 @@ System ready <span class="a">✓</span></pre>
  
         <div class="body">
  
-          <h3>
+          <h3 class="outcome">
             SSH Access Monitoring & Audit System
           </h3>
  
-          <p class="outcome">
-            Security & Log Automation
-          </p>
+   
  
           <p class="card-description">
            Real-time security auditing tool for linux servers. A Python background service monitors 
@@ -4288,13 +4518,11 @@ System ready <span class="a">✓</span></pre>
  
         <div class="body">
  
-          <h3>
+          <h3 class="outcome">
             High-Availibility NGINX Load Balancer
           </h3>
  
-          <p class="outcome">
-            Infrastructure & Scaling
-          </p>
+
  
           <p class="card-description">
             Deployed an NGINX load balancing cluster 
@@ -4343,13 +4571,11 @@ System ready <span class="a">✓</span></pre>
  
         <div class="body">
  
-          <h3>
+          <h3 class="outcome">
             Automated Configuration Management with Ansible
           </h3>
  
-          <p class="outcome">
-            DevOps & Automation
-          </p>
+
  
           <p class="card-description">
             Set up an Ansible Control Node on Ubuntu Server to 
@@ -4400,7 +4626,7 @@ System ready <span class="a">✓</span></pre>
  
         <div class="body">
  
-          <h3>
+          <h3 class="outcome">
             Kubernetes & CI/CD Pipeline
           </h3>
  
@@ -4454,13 +4680,11 @@ System ready <span class="a">✓</span></pre>
  
         <div class="body">
  
-          <h3>
+          <h3 class="outcome">
             On-Premise Infrastructure as Code
           </h3>
  
-          <p class="outcome">
-           Terraform & Automated Provisioning 
-          </p>
+      
  
           <p class="card-description">
             Automated VM provisioning on a bare-metal hypervisor using Terraform. Declarative configuration files define system resources, networking, and instances,
@@ -4524,9 +4748,6 @@ System ready <span class="a">✓</span></pre>
 
       <div>
 
-        <span class="section-label">
-          EDUCATION & EXPERIENCE
-        </span>
 
         <h2>
           My journey
@@ -4694,10 +4915,6 @@ System ready <span class="a">✓</span></pre>
  
         <div class="contact-title">
  
-          <span class="section-label">
-            GET IN TOUCH
-          </span>
- 
           <h2>
             Interested in working together?
           </h2>
@@ -4721,8 +4938,10 @@ System ready <span class="a">✓</span></pre>
         </div>
  
  
-        <form
-          onsubmit="event.preventDefault(); document.getElementById('formMsg').textContent='Thanks — this is a demo form. Connect it to your email provider before going live.';">
+        <form action="https://api.web3forms.com/submit" method="POST">
+
+          <!-- Web3Forms Access Key -->
+          <input type="hidden" name="access_key" value="9f9cf07c-b188-4a7a-ade4-69afb9b431ea">
  
           <div class="form-group">
  
@@ -4780,13 +4999,6 @@ System ready <span class="a">✓</span></pre>
  
           </button>
  
- 
-          <p
-            class="form-note"
-            id="formMsg"
-            role="status">
-          </p>
- 
         </form>
  
       </div>
@@ -4796,7 +5008,6 @@ System ready <span class="a">✓</span></pre>
   </div>
  
 </section>
- 
  
 </main>
  
@@ -4809,7 +5020,7 @@ System ready <span class="a">✓</span></pre>
  
   <div class="wrap">
  
-    © 2026 Mahmoud Alsalloum
+    © <span id="copyright-year">2026</span> Mahmoud Alsalloum
     · Built with HTML, CSS & JavaScript
     . Icons by <a href="https://icons8.com" target="_blank">Icons8</a> & <a href="https://www.flaticon.com" target="_blank">Flaticon</a>
  
@@ -4817,6 +5028,22 @@ System ready <span class="a">✓</span></pre>
  
 </footer>
  
+
+
+<button
+  type="button"
+  id="backToTop"
+  class="back-to-top"
+  aria-label="Nach oben scrollen">
+
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M12 19V5"></path>
+    <path d="M5 12l7-7 7 7"></path>
+  </svg>
+
+</button>
+
+
  
 <script>
 
@@ -4953,6 +5180,31 @@ document.addEventListener('keydown', (event) => {
  
 });
  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  
 /* ============================================================
    ROLE ROTATOR
@@ -5044,7 +5296,114 @@ if(!reduceMotion){
  
 }
  
+
+
+
+const startYear = 2026;
+const currentYear = new Date().getFullYear();
+const yearElement = document.getElementById("copyright-year");
+
+if (yearElement) {
+    if (currentYear > startYear) {
+        yearElement.textContent = `${startYear} - ${currentYear}`;
+    } else {
+        yearElement.textContent = startYear;
+    }
+}
+
+
+
+
+
+
+
+/* ============================================================
+   BACK TO TOP
+   ============================================================ */
+
+(function(){
+
+  const backToTop = document.getElementById('backToTop');
+
+  if(!backToTop){
+    return;
+  }
+
+  const SHOW_AFTER = 400;
+
+  function updateVisibility(){
+    if(window.scrollY > SHOW_AFTER){
+      backToTop.classList.add('visible');
+    }else{
+      backToTop.classList.remove('visible');
+    }
+  }
+
+  window.addEventListener('scroll', updateVisibility, {passive:true});
+  updateVisibility();
+
+  backToTop.addEventListener('click', () => {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({
+      top:0,
+      behavior: reduceMotion ? 'auto' : 'smooth'
+    });
+  });
+
+})();
+
+
+
+
+
 </script>
  
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+  // تهيئة Google Translate
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'en',
+      includedLanguages: 'en,de,ar,fr,es', // يمكنك إضافة لغات أخرى
+      autoDisplay: false
+    }, 'google_translate_element');
+  }
+
+  // تغيير اللغة عند الضغط على الأعلام
+  function changeLanguage(langCode) {
+    const select = document.querySelector('.goog-te-combo');
+    if (select) {
+      select.value = langCode;
+      select.dispatchEvent(new Event('change'));
+    }
+    document.getElementById('langModal').style.display = 'none';
+  }
+
+  // التحكم بفتح وإغلاق النافذة المنبثقة
+  const langBtn = document.getElementById('langBtn');
+  const langModal = document.getElementById('langModal');
+  const closeLang = document.getElementById('closeLang');
+
+  langBtn.onclick = () => langModal.style.display = 'block';
+  closeLang.onclick = () => langModal.style.display = 'none';
+  window.onclick = (e) => { if (e.target === langModal) langModal.style.display = 'none'; };
+</script>
+
+<!-- مكتبة Google Translate الرسمية -->
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+
+
+
+
+
 </body>
 </html>
