@@ -632,100 +632,6 @@ header.site{
 }
  
  
-
-
-
-
-
-
-/* زر اللغة */
-.btn-lang {
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #fff;
-  padding: 8px 16px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-/* النافذة المنبثقة Modal */
-.lang-modal {
-  display: none;
-  position: fixed;
-  z-index: 9999;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(4px);
-}
-
-.lang-modal-content {
-  background-color: #1e293b;
-  color: #fff;
-  margin: 15% auto;
-  padding: 24px;
-  border-radius: 12px;
-  width: 90%;
-  max-width: 360px;
-  text-align: center;
-  position: relative;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-}
-
-.close-lang {
-  position: absolute;
-  right: 16px;
-  top: 12px;
-  font-size: 24px;
-  cursor: pointer;
-}
-
-.lang-options {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 16px;
-}
-
-.lang-options button {
-  background: #334155;
-  color: #fff;
-  border: none;
-  padding: 10px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 16px;
-  text-align: left;
-  transition: background 0.2s;
-}
-
-.lang-options button:hover {
-  background: #475569;
-}
-
-/* إخفاء شريط Google العلوي المزعج */
-body {
-  top: 0 !important;
-}
-.goog-te-banner-frame {
-  display: none !important;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* ============================================================
    TERMINAL
    ============================================================ */
@@ -3367,50 +3273,6 @@ System ready <span class="a">✓</span></pre>
 </section>
  
  
-
-
-
-
-<button id="langBtn" class="btn-lang" type="button">
-  🌐 English
-</button>
-
-
-<div id="langModal" class="lang-modal">
-  <div class="lang-modal-content">
-    <span id="closeLang" class="close-lang">&times;</span>
-    <h3>Select Language</h3>
-    
-    <div class="lang-options">
-      <button onclick="changeLanguage('en')">🇺🇸 English</button>
-      <button onclick="changeLanguage('de')">🇩🇪 Deutsch</button>
-      <button onclick="changeLanguage('ar')">🇸🇦 العربية</button>
-      <button onclick="changeLanguage('fr')">🇫🇷 Français</button>
-      <button onclick="changeLanguage('es')">🇪🇸 Español</button>
-    </div>
-  </div>
-</div>
-
-
-<div id="google_translate_element" style="display:none;"></div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
  
 <!-- ============================================================
      ABOUT
@@ -4837,8 +4699,6 @@ System ready <span class="a">✓</span></pre>
 </li>
 
 
-
-
 <li>
 
   <div class="role">
@@ -5029,7 +4889,6 @@ System ready <span class="a">✓</span></pre>
 </footer>
  
 
-
 <button
   type="button"
   id="backToTop"
@@ -5042,6 +4901,7 @@ System ready <span class="a">✓</span></pre>
   </svg>
 
 </button>
+
 
 
  
@@ -5180,31 +5040,6 @@ document.addEventListener('keydown', (event) => {
  
 });
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
  
 /* ============================================================
    ROLE ROTATOR
@@ -5298,7 +5133,6 @@ if(!reduceMotion){
  
 
 
-
 const startYear = 2026;
 const currentYear = new Date().getFullYear();
 const yearElement = document.getElementById("copyright-year");
@@ -5310,11 +5144,6 @@ if (yearElement) {
         yearElement.textContent = startYear;
     }
 }
-
-
-
-
-
 
 
 /* ============================================================
@@ -5353,57 +5182,7 @@ if (yearElement) {
 })();
 
 
-
-
-
 </script>
  
-
-
-
-
-
-
-
-
-<script type="text/javascript">
-  // تهيئة Google Translate
-  function googleTranslateElementInit() {
-    new google.translate.TranslateElement({
-      pageLanguage: 'en',
-      includedLanguages: 'en,de,ar,fr,es', // يمكنك إضافة لغات أخرى
-      autoDisplay: false
-    }, 'google_translate_element');
-  }
-
-  // تغيير اللغة عند الضغط على الأعلام
-  function changeLanguage(langCode) {
-    const select = document.querySelector('.goog-te-combo');
-    if (select) {
-      select.value = langCode;
-      select.dispatchEvent(new Event('change'));
-    }
-    document.getElementById('langModal').style.display = 'none';
-  }
-
-  // التحكم بفتح وإغلاق النافذة المنبثقة
-  const langBtn = document.getElementById('langBtn');
-  const langModal = document.getElementById('langModal');
-  const closeLang = document.getElementById('closeLang');
-
-  langBtn.onclick = () => langModal.style.display = 'block';
-  closeLang.onclick = () => langModal.style.display = 'none';
-  window.onclick = (e) => { if (e.target === langModal) langModal.style.display = 'none'; };
-</script>
-
-<!-- مكتبة Google Translate الرسمية -->
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-
-
-
-
-
-
 </body>
 </html>
