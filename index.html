@@ -30,27 +30,27 @@
    ============================================================ */
  
 :root{
-  --bg:#5591af;
-  --bg-dark:#101722;
-  --bg-dark-2:#151e2c;
+  --bg:#00ffff;
+  --bg-dark:#000000;
+  --bg-dark-2:#000000;
  
-  --card:#090d13;
-  --card-2:#0d131d;
+  --card:#000000;
+  --card-2:#000000;
  
-  --line:rgba(255,255,255,.12);
-  --line-soft:rgba(255,255,255,.07);
+  --line:rgba(0, 0, 0, 0);
+  --line-soft:rgba(0, 0, 0, 0);
  
   --text:#ffffff;
-  --muted:rgba(255,255,255,.68);
+  --muted:rgb(255, 255, 255);
  
   --cyan:#00ffff;
-  --cyan-soft:rgba(0,255,255,.12);
+  --cyan-soft:rgba(0, 255, 255, 0);
  
-  --amber:#fbff00;
-  --amber-soft:rgba(251,255,0,.10);
+  --amber:#bbff00;
+  --amber-soft:rgba(251, 255, 0, 0);
  
   --paper:#ffffff;
-  --paper-muted:rgba(255,255,255,.68);
+  --paper-muted:rgba(0, 0, 0, 0);
  
   --mono:'IBM Plex Mono',ui-monospace,monospace;
   --sans:'IBM Plex Sans',system-ui,sans-serif;
@@ -59,7 +59,7 @@
   --radius-small:10px;
  
   --shadow:
-    0 20px 50px rgba(0,0,0,.22);
+    0 20px 50px rgb(0, 0, 0);
 }
  
  
@@ -82,19 +82,19 @@ body{
   background:
     radial-gradient(
       circle at 10% 10%,
-      rgba(0,255,255,.08),
+      rgba(0,0,0,0),
       transparent 28%
     ),
     radial-gradient(
       circle at 90% 25%,
-      rgba(88,113,168,.20),
+      rgba(0, 0, 0, 0),
       transparent 30%
     ),
     linear-gradient(
       145deg,
-      #5591af 0%,
-      #3f6f8e 35%,
-      #111822 100%
+      #1d8ba7 0%,
+      #166c81 35%,
+      #000000 100%
     );
  
   background-attachment:fixed;
@@ -124,7 +124,7 @@ body::before{
     ),
     linear-gradient(
       90deg,
-      rgba(255,255,255,.015) 1px,
+      rgba(0, 0, 0, 0.0) 1px,
       transparent 1px
     );
  
@@ -132,7 +132,7 @@ body::before{
  
   mask-image:linear-gradient(
     to bottom,
-    rgba(0,0,0,.45),
+    rgb(0, 0, 0),
     transparent 75%
   );
  
@@ -155,7 +155,7 @@ textarea{
  
 ::selection{
   background:var(--cyan);
-  color:#071016;
+  color:#000000;
 }
  
 .wrap{
@@ -315,7 +315,7 @@ header.site{
  
   padding:9px 11px;
  
-  color:rgba(255,255,255,.67);
+  color:rgb(255, 255, 255);
  
   text-decoration:none;
  
@@ -385,8 +385,8 @@ header.site{
 }
  
 #menuBtn:hover{
-  background:rgba(0,255,255,.08);
-  border-color:rgba(0,255,255,.4);
+  background:rgba(0, 255, 255, 0);
+  border-color:rgb(0, 255, 255);
 }
  
  
@@ -582,7 +582,7 @@ header.site{
 }
  
 .btn-ghost:hover{
-  border-color:rgba(0,255,255,.35);
+  border-color:rgb(0, 255, 255);
  
   background:rgba(0,255,255,.07);
 }
@@ -701,19 +701,19 @@ header.site{
  
   border-radius:50%;
  
-  background:#394351;
+  background:#000000;
 }
  
 .term-bar span:first-child{
-  background:#ff5f57;
+  background:#ff0d00;
 }
  
 .term-bar span:nth-child(2){
-  background:#ffbd2e;
+  background:#d0ff00;
 }
  
 .term-bar span:nth-child(3){
-  background:#28c840;
+  background:#00ff26;
 }
  
 .term pre{
@@ -723,7 +723,7 @@ header.site{
  
   overflow-x:auto;
  
-  color:#7fe9e9;
+  color:#00ffff;
  
   line-height:1.8;
 }
@@ -746,7 +746,7 @@ section{
  
   padding:100px 0;
  
-  border-top:1px solid rgba(255,255,255,.08);
+  border-top:1px solid rgba(255, 255, 255, 0);
 }
  
 .section-heading{
